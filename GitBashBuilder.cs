@@ -1,5 +1,3 @@
-using SunamoI18N.Values;
-
 namespace SunamoGitBashBuilder;
 
 
@@ -132,7 +130,7 @@ public partial class GitBashBuilder
         var files = FS.GetFiles(pathSearchForFiles, FS.MascFromExtension(), System.IO.SearchOption.AllDirectories, new GetFilesArgs { excludeFromLocationsCOntains = SunamoCollections.CA.ToListString(@"\.git\") });
 
         SunamoCollections.CA.Replace(linesFiles, solution, string.Empty);
-        CAChangeContent.ChangeContent1(null, linesFiles, SH.RemoveAfterFirst, AllStrings.swd);
+        CAChangeContent.ChangeContent1(null, linesFiles, SHParts.RemoveAfterFirst, AllStrings.swd);
         SunamoCollections.CA.Trim(linesFiles);
         CAChangeContent.ChangeContent1(null, linesFiles, FS.AddExtensionIfDontHave, searchOnlyWithExtension);
         CAChangeContent.ChangeContent<bool>(null, linesFiles, FS.Slash, true);
@@ -187,7 +185,7 @@ public partial class GitBashBuilder
             else
             {
                 var fullPath = item;
-                item = FS.GetFileName(item);
+                item = Path.GetFileName(item);
                 #region File isnt in dict => Dont exists
                 if (!dictPsychicallyExistsFiles.ContainsKey(item))
                 {
@@ -201,7 +199,7 @@ public partial class GitBashBuilder
                     #region Add as relative file
                     if (itemWithoutTrim.Contains(AllStrings.slash))
                     {
-                        if (FS.ExistsFile(itemWithoutTrimBackslashed))
+                        if (File.Exists(itemWithoutTrimBackslashed))
                         {
                             filesToCommit.Add(itemWithoutTrim.Replace(pathRepository, string.Empty));
                         }
