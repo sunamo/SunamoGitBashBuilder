@@ -1,8 +1,12 @@
+using SunamoClipboard;
+using SunamoGitBashBuilder._sunamo;
+using SunamoLogger.Base;
+using SunamoLogger.Logger.TemplateLoggerBaseNS;
+using SunamoLogger.Logger.TypedLoggerBaseNS;
+using SunamoStringGetLines;
+using SunamoTextBuilder;
+
 namespace SunamoGitBashBuilder;
-
-
-
-
 /// <summary>
 /// GitBashBuilder
 /// </summary>
@@ -108,7 +112,7 @@ public partial class GitBashBuilder
         //TypedLoggerBase tlb = TypedConsoleLogger.Instance;
 
         string pathSearchForFiles = null;
-        if (FS.ExistsDirectory(solution))
+        if (Directory.Exists(solution))
         {
             pathSearchForFiles = solution;
         }
@@ -123,15 +127,17 @@ public partial class GitBashBuilder
             tlb.Information("Is sunamo.cz");
             pathSearchForFiles += AllStrings.bs + solution;
         }
-        tlb.Information(sess.i18n(XlfKeys.Path) + ": " + pathSearchForFiles);
+        tlb.Information("Path" + ": " + pathSearchForFiles);
 
         FS.WithEndSlash(ref pathRepository);
 
-        var files = FS.GetFiles(pathSearchForFiles, FS.MascFromExtension(), System.IO.SearchOption.AllDirectories, new GetFilesArgs { excludeFromLocationsCOntains = SunamoCollections.CA.ToListString(@"\.git\") });
+        var files = Directory.GetFiles(pathSearchForFiles, "*.*", System.IO.SearchOption.AllDirectories/*, new GetFilesArgs { excludeFromLocationsCOntains = SunamoCollections.new List<string>(@"\.git\") }*/).ToList();
 
-        SunamoCollections.CA.Replace(linesFiles, solution, string.Empty);
+        files = files.Where(d => !d.Contains(@"\.git\")).ToList();
+
+        CA.Replace(linesFiles, solution, string.Empty);
         CAChangeContent.ChangeContent1(null, linesFiles, SHParts.RemoveAfterFirst, AllStrings.swd);
-        SunamoCollections.CA.Trim(linesFiles);
+        CA.Trim(linesFiles);
         CAChangeContent.ChangeContent1(null, linesFiles, FS.AddExtensionIfDontHave, searchOnlyWithExtension);
         CAChangeContent.ChangeContent<bool>(null, linesFiles, FS.Slash, true);
         CAChangeContent.ChangeContent1(null, linesFiles, SHTrim.TrimStart, AllStrings.slash);
@@ -143,7 +149,7 @@ public partial class GitBashBuilder
         // In key are filenames, in value full paths to files backslashed
         Dictionary<string, List<string>> dictPsychicallyExistsFiles = FS.GetDictionaryByFileNameWithExtension(files);
 
-        SunamoCollections.CA.Replace(files, AllStrings.bs, AllStrings.slash);
+        CA.Replace(files, AllStrings.bs, AllStrings.slash);
         pathRepository = FS.Slash(pathRepository, false);
 
         // process full path files
@@ -157,7 +163,7 @@ public partial class GitBashBuilder
             {
                 item = itemWithoutTrim.TrimEnd(AllChars.asterisk);
                 string itemWithoutTrimBackslashed = Path.Combine(pathRepository, FS.Slash(item, false));
-                if (FS.ExistsDirectory(itemWithoutTrimBackslashed))
+                if (Directory.Exists(itemWithoutTrimBackslashed))
                 {
                     filesToCommit.Add(item + AllStrings.asterisk);
                 }
@@ -231,14 +237,14 @@ public partial class GitBashBuilder
 
         if (anyError)
         {
-            tlb.Error(sess.i18n("SomeErrorsOccured"));
+            tlb.Error(xSomeErrorsOccured);
             return null;
         }
 
         return filesToCommit;
     }
 
-
+    public static string xSomeErrorsOccured = "SomeErrorsOccured";
 
     public static string CreateGitCommandForFiles(string command, StringBuilder sb, List<string> linesFiles)
     {

@@ -1,19 +1,22 @@
+global using System.Collections.Generic;
+global using System;
 global using System.Text;
 global using SunamoExceptions.OnlyInSE;
 global using SunamoValues;
-global using SunamoInterfaces.Interfaces;
-global using SunamoCollectionsChangeContent;
-global using SunamoValues.Values;
-global using SunamoI18N;
-global using SunamoFileSystem.Args;
-global using SunamoLogger.Logger.TypedLoggerBaseNS;
-global using SunamoClipboard;
-global using SunamoCollections;
-global using SunamoFileSystem;
+global using System.IO;
 global using SunamoLogger.Base;
+global using SunamoLogger.Logger.TypedLoggerBaseNS;
+
+global using SunamoClipboard;
 global using SunamoLogger.Logger.TemplateLoggerBaseNS;
-global using SunamoString;
-global using SunamoStringTrim;
 global using SunamoTextBuilder;
-global using SunamoStringReplace._sunamo;
-global using SunamoStringGetLines;
+
+//global using SunamoCollectionsChangeContent;
+//global using SunamoStringGetLines;
+//global using SunamoString;
+//global using SunamoI18N;
+//global using SunamoI18N.Values;
+//global using SunamoFileSystem;
+//global using SunamoStringTrim;
+//global using SunamoClipboard;
+//global using SunamoFileSystem.Args;
