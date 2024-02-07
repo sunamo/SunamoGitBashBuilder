@@ -1,10 +1,8 @@
-using SunamoClipboard;
+using SunamoExceptions.OnlyInSE;
+using SunamoGitBashBuilder._public.Logger;
 using SunamoGitBashBuilder._sunamo;
-using SunamoLogger.Base;
-using SunamoLogger.Logger.TemplateLoggerBaseNS;
-using SunamoLogger.Logger.TypedLoggerBaseNS;
-using SunamoStringGetLines;
-using SunamoTextBuilder;
+using SunamoInterfaces.Interfaces;
+using SunamoValues;
 
 namespace SunamoGitBashBuilder;
 /// <summary>
@@ -13,15 +11,15 @@ namespace SunamoGitBashBuilder;
 public partial class GitBashBuilder
 {
     private static Type type = typeof(GitBashBuilder);
-    public TextBuilder sb = null;
+    public ITextBuilder sb = null;
 
-    public GitBashBuilder()
-    {
-        sb = new TextBuilder();
-        sb.prependEveryNoWhite = AllStrings.space;
-    }
+    //public GitBashBuilder()
+    //{
+    //    sb = new TextBuilder();
+    //    sb.prependEveryNoWhite = AllStrings.space;
+    //}
 
-    public GitBashBuilder(TextBuilder sb)
+    public GitBashBuilder(ITextBuilder sb)
     {
         this.sb = sb;
         //this.sb.sb = sb.sb;
@@ -65,7 +63,7 @@ public partial class GitBashBuilder
         }
 
         string result = GitBashBuilder.CreateGitCommandForFiles(command, new StringBuilder(), filesToCommit);
-        ClipboardHelper.SetText(result);
+        //ClipboardHelper.SetText(result);
         return result;
     }
 
@@ -75,16 +73,16 @@ public partial class GitBashBuilder
     /// <param name="folder"></param>
     /// <param name="typedExt"></param>
     /// <param name="files"></param>
-    public static string CheckoutWithExtension(string folder, string typedExt, List<string> files, string basePathIfA2SolutionsWontExistsOnFilesystem)
+    public static string CheckoutWithExtension(string folder, string typedExt, List<string> files, string basePathIfA2SolutionsWontExistsOnFilesystem, ITextBuilder ci)
     {
         ThrowEx.IsNull("typedExt", typedExt);
 
-        GitBashBuilder bashBuilder = new GitBashBuilder();
+        GitBashBuilder bashBuilder = new GitBashBuilder(ci);
         bool anyError = false;
         var filesToCommit = GitBashBuilder.PrepareFilesToSimpleGitFormat(TypedSunamoLogger.Instance, folder, files, out anyError, typedExt, basePathIfA2SolutionsWontExistsOnFilesystem);
         if (filesToCommit == null)
         {
-            SunamoTemplateLogger.Instance.SomeErrorsOccuredSeeLog();
+            //SunamoTemplateLogger.Instance.SomeErrorsOccuredSeeLog();
         }
 
         //string result = GitBashBuilder.CreateGitCommandForFiles("checkout", new StringBuilder(), filesToCommit);
