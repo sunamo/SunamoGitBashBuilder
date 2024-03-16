@@ -8,7 +8,7 @@ namespace SunamoGitBashBuilder;
 /// <summary>
 /// GitBashBuilder
 /// </summary>
-public partial class GitBashBuilder
+public partial class GitBashBuilder : IGitBashBuilder
 {
     private static Type type = typeof(GitBashBuilder);
     public ITextBuilder sb = null;
@@ -54,7 +54,7 @@ public partial class GitBashBuilder
     /// <param name="solution"></param>
     /// <param name="linesFiles"></param>
     /// <param name="searchOnlyWithExtension"></param>
-    public static string GenerateCommandForGit(TypedLoggerBase tlb, string solution, List<string> linesFiles, out bool anyError, string searchOnlyWithExtension, string command, string basePathIfA2SolutionsWontExistsOnFilesystem)
+    public static string GenerateCommandForGit(/*TypedLoggerBaseGitBashBuilder*/ object tlb, string solution, List<string> linesFiles, out bool anyError, string searchOnlyWithExtension, string command, string basePathIfA2SolutionsWontExistsOnFilesystem)
     {
         var filesToCommit = GitBashBuilder.PrepareFilesToSimpleGitFormat(tlb, solution, linesFiles, out anyError, searchOnlyWithExtension, basePathIfA2SolutionsWontExistsOnFilesystem);
         if (filesToCommit == null || filesToCommit.Count == 0)
@@ -102,7 +102,7 @@ public partial class GitBashBuilder
     /// <param name="linesFiles"></param>
     /// <param name="searchOnlyWithExtension"></param>
     /// <param name="command"></param>
-    public static List<string> PrepareFilesToSimpleGitFormat(TypedLoggerBase tlb, string solution, List<string> linesFiles, out bool anyError, string searchOnlyWithExtension, string basePathIfA2SolutionsWontExistsOnFilesystem)
+    public static List<string> PrepareFilesToSimpleGitFormat(/*TypedLoggerBaseGitBashBuilder*/ object tlb, string solution, List<string> linesFiles, out bool anyError, string searchOnlyWithExtension, string basePathIfA2SolutionsWontExistsOnFilesystem)
     {
         searchOnlyWithExtension = searchOnlyWithExtension.TrimStart(AllChars.asterisk);
         anyError = false;
@@ -122,10 +122,10 @@ public partial class GitBashBuilder
         string pathRepository = pathSearchForFiles;
         if (solution == Consts.Cz)
         {
-            tlb.Information("Is sunamo.cz");
+            //tlb.Information("Is sunamo.cz");
             pathSearchForFiles += AllStrings.bs + solution;
         }
-        tlb.Information("Path" + ": " + pathSearchForFiles);
+        //tlb.Information("Path" + ": " + pathSearchForFiles);
 
         FS.WithEndSlash(ref pathRepository);
 
@@ -168,7 +168,7 @@ public partial class GitBashBuilder
                 else
                 {
                     anyError = true;
-                    tlb.Error(Exceptions.DirectoryWasntFound(null, itemWithoutTrimBackslashed));
+                    //tlb.Error(Exceptions.DirectoryWasntFound(null, itemWithoutTrimBackslashed));
                 }
             }
             #endregion
@@ -194,7 +194,7 @@ public partial class GitBashBuilder
                 if (!dictPsychicallyExistsFiles.ContainsKey(item))
                 {
                     anyError = true;
-                    tlb.Error(Exceptions.FileWasntFoundInDirectory(null, fullPath));
+                    //tlb.Error(Exceptions.FileWasntFoundInDirectory(null, fullPath));
                 }
                 #endregion
                 else
@@ -210,7 +210,7 @@ public partial class GitBashBuilder
                         else
                         {
                             anyError = true;
-                            tlb.Error(Exceptions.FileWasntFoundInDirectory(null, itemWithoutTrimBackslashed));
+                            //tlb.Error(Exceptions.FileWasntFoundInDirectory(null, itemWithoutTrimBackslashed));
                         }
                     }
                     #endregion
@@ -224,7 +224,7 @@ public partial class GitBashBuilder
                         else
                         {
                             anyError = true;
-                            tlb.Error(Exceptions.MoreCandidates(null, dictPsychicallyExistsFiles[item], item));
+                            //tlb.Error(Exceptions.MoreCandidates(null, dictPsychicallyExistsFiles[item], item));
                         }
                     }
                     #endregion
@@ -235,7 +235,7 @@ public partial class GitBashBuilder
 
         if (anyError)
         {
-            tlb.Error(xSomeErrorsOccured);
+            //tlb.Error(xSomeErrorsOccured);
             return null;
         }
 

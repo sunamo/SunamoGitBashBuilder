@@ -1,5 +1,5 @@
 ﻿namespace SunamoGitBashBuilder._public.Logger;
-public class TypedLoggerBase
+public class TypedLoggerBaseGitBashBuilder
 {
     public void Error(string xSomeErrorsOccured)
     {
