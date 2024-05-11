@@ -1,4 +1,4 @@
-namespace SunamoGitBashBuilder._sunamo;
+namespace SunamoGitBashBuilder;
 
 internal class SHParts
 {

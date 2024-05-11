@@ -2,7 +2,7 @@
 
 
 using SunamoValues;
-namespace SunamoGitBashBuilder._sunamo;
+namespace SunamoGitBashBuilder;
 
 internal class FS
 {

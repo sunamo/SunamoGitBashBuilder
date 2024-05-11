@@ -1,5 +1,5 @@
 using System.Runtime.CompilerServices;
-namespace SunamoGitBashBuilder._sunamo;
+namespace SunamoGitBashBuilder;
 
 internal class SH
 {

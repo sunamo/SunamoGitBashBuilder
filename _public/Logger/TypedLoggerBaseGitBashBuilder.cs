@@ -1,4 +1,4 @@
-﻿namespace SunamoGitBashBuilder._public.Logger;
+namespace SunamoGitBashBuilder;
 public class TypedLoggerBaseGitBashBuilder
 {
     public void Error(string xSomeErrorsOccured)
