@@ -7,7 +7,6 @@
     <Description>Generator of git commands</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="SunamoTypeOfMessage" Version="24.2.6.2" />
     <Compile Include="..\SunamoInterfaces\Interfaces\IGitBashBuilder.cs" Link="_linked\SunamoInterfaces\Interfaces\IGitBashBuilder.cs" />
     <Compile Include="..\SunamoInterfaces\Interfaces\ITextBuilder.cs" Link="_linked\SunamoInterfaces\Interfaces\ITextBuilder.cs" />
     <Compile Include="..\SunamoValues\AllStrings.cs" Link="_linked\SunamoValues\AllStrings.cs" />
