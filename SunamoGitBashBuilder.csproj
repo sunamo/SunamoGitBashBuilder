@@ -7,29 +7,6 @@
     <Description>Generator of git commands</Description>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\SunamoInterfaces\Interfaces\IGitBashBuilder.cs" Link="_linked\SunamoInterfaces\Interfaces\IGitBashBuilder.cs" />
-    <Compile Include="..\SunamoInterfaces\Interfaces\ITextBuilder.cs" Link="_linked\SunamoInterfaces\Interfaces\ITextBuilder.cs" />
-    <Compile Include="..\SunamoValues\AllStrings.cs" Link="_linked\SunamoValues\AllStrings.cs" />
-    <Compile Include="..\SunamoExceptions\OnlyInSE\ThrowEx.cs" Link="_linked\SunamoExceptions\OnlyInSE\ThrowEx.cs" />
-    <Compile Include="..\SunamoValues\Paths\SourceCodePaths.cs" Link="_linked\SunamoValues\Paths\SourceCodePaths.cs" />
-    <Compile Include="..\SunamoValues\AllChars.cs" Link="_linked\SunamoValues\AllChars.cs" />
-    <Compile Include="..\SunamoValues\Consts.cs" Link="_linked\SunamoValues\Consts.cs" />
-    <Compile Include="..\SunamoArgs\GetFilesArgs.cs" Link="_linked\SunamoArgs\GetFilesArgs.cs" />
-    <Compile Include="..\SunamoExceptions\OnlyInSE\Exceptions.cs" Link="_linked\SunamoExceptions\OnlyInSE\Exceptions.cs" />
-    <Compile Include="..\SunamoExceptions\OnlyInSE\TranslateAble.cs" Link="_linked\SunamoExceptions\OnlyInSE\TranslateAble.cs" />
-    <Compile Include="..\SunamoExceptions\_AddedToAllCsproj\SHSunamoExceptions.cs" Link="_linked\SunamoExceptions\_AddedToAllCsproj\SHSunamoExceptions.cs" />
-    <Compile Include="..\SunamoExceptions\_AddedToAllCsproj\CASunamoExceptions.cs" Link="_linked\SunamoExceptions\_AddedToAllCsproj\CASunamoExceptions.cs" />
-    <Compile Include="..\SunamoExceptions\OnlyInSE\Exc.cs" Link="_linked\SunamoExceptions\OnlyInSE\Exc.cs" />
-    <Compile Include="..\SunamoExceptions\OnlyInSE\Types.cs" Link="_linked\SunamoExceptions\OnlyInSE\Types.cs" />
-    <Compile Include="..\SunamoXlfKeys\XlfKeys.cs" Link="_linked\SunamoXlfKeys\XlfKeys.cs" />
-    <Compile Include="..\SunamoStringGetLines\SHGetLines.cs" Link="_linked\SunamoStringGetLines\SHGetLines.cs" />
-    <Compile Include="..\SunamoLogger\Logger\TypedLoggerBaseNS\TypedSunamoLogger.cs" Link="_linked\SunamoLogger\Logger\TypedLoggerBaseNS\TypedSunamoLogger.cs" />
-    <Compile Include="..\SunamoFileSystem\FS.cs" Link="_linked\SunamoFileSystem\FS.cs" />
-    <Compile Include="..\SunamoCollections\CA.cs" Link="_linked\SunamoCollections\CA.cs" />
-    <Compile Include="..\SunamoCollectionsChangeContent\CAChangeContent.cs" Link="_linked\SunamoCollectionsChangeContent\CAChangeContent.cs" />
-    <Compile Include="..\SunamoStringParts\SHParts.cs" Link="_linked\SunamoStringParts\SHParts.cs" />
-    <Compile Include="..\SunamoStringTrim\SHTrim.cs" Link="_linked\SunamoStringTrim\SHTrim.cs" />
-    <Compile Include="..\SunamoString\SH.cs" Link="_linked\SunamoString\SH.cs" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>$(DefineConstants);ASYNC;SunamoGitBashBuilder</DefineConstants>
