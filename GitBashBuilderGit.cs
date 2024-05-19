@@ -102,7 +102,7 @@ public partial class GitBashBuilder : IGitBashBuilder
         AppendLine();
     }
 
-    private static string GitStatic(StringBuilder sb, string remainCommand)
+    public static string GitStatic(StringBuilder sb, string remainCommand)
     {
         sb.Append("git " + remainCommand);
         return sb.ToString();

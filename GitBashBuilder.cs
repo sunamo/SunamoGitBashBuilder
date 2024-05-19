@@ -1,10 +1,15 @@
 
 
+namespace
+#if SunamoDevCode
+SunamoDevCode
+#else
+SunamoGitBashBuilder
+#endif
+;
 
 
 
-
-namespace SunamoGitBashBuilder;
 /// <summary>
 /// GitBashBuilder
 /// </summary>
@@ -73,20 +78,20 @@ public partial class GitBashBuilder : IGitBashBuilder
     /// <param name="folder"></param>
     /// <param name="typedExt"></param>
     /// <param name="files"></param>
-    public static string CheckoutWithExtension(string folder, string typedExt, List<string> files, string basePathIfA2SolutionsWontExistsOnFilesystem, ITextBuilder ci)
+    public static string CheckoutWithExtension(string folder, string typedExt, List<string> files, string basePathIfA2SolutionsWontExistsOnFilesystem, ITextBuilder ci, ITypedLoggerBase typedLoggerBase)
     {
         ThrowEx.IsNull("typedExt", typedExt);
 
         GitBashBuilder bashBuilder = new GitBashBuilder(ci);
         bool anyError = false;
-        var filesToCommit = GitBashBuilder.PrepareFilesToSimpleGitFormat(TypedSunamoLogger.Instance, folder, files, out anyError, typedExt, basePathIfA2SolutionsWontExistsOnFilesystem);
+        var filesToCommit = GitBashBuilder.PrepareFilesToSimpleGitFormat(typedLoggerBase, folder, files, out anyError, typedExt, basePathIfA2SolutionsWontExistsOnFilesystem);
         if (filesToCommit == null)
         {
             //SunamoTemplateLogger.Instance.SomeErrorsOccuredSeeLog();
         }
 
         //string result = GitBashBuilder.CreateGitCommandForFiles("checkout", new StringBuilder(), filesToCommit);
-        string result = GitBashBuilder.GenerateCommandForGit(TypedSunamoLogger.Instance, folder, files, out anyError, typedExt, "checkout", basePathIfA2SolutionsWontExistsOnFilesystem);
+        string result = GitBashBuilder.GenerateCommandForGit(typedLoggerBase, folder, files, out anyError, typedExt, "checkout", basePathIfA2SolutionsWontExistsOnFilesystem);
 
         return result;
     }
@@ -246,7 +251,8 @@ public partial class GitBashBuilder : IGitBashBuilder
 
     public static string CreateGitCommandForFiles(string command, StringBuilder sb, List<string> linesFiles)
     {
-        return GitStatic(sb, command + AllStrings.space + string.Join(AllChars.space, linesFiles));
+        return null;
+        //return GitStatic(sb, command + AllStrings.space + string.Join(AllChars.space, linesFiles));
     }
 
     public void Cd(string key)
@@ -279,5 +285,78 @@ public partial class GitBashBuilder : IGitBashBuilder
         return sb.ToString();
     }
 
+    public void Add(string v)
+    {
+        throw new NotImplementedException();
+    }
 
+    public void AddNewRemote(string s)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Checkout(string arg)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Clean(string v)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Clone(string repoUri, string args)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Commit(bool addAllUntrackedFiles, string commitMessage)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Config(string v)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Fetch(string s = "")
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Init()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Merge(string v)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Pull()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Push(bool force)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Push(string arg)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Remote(string arg)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Status()
+    {
+        throw new NotImplementedException();
+    }
 }
