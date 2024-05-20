@@ -13,7 +13,7 @@ SunamoGitBashBuilder
 /// <summary>
 /// GitBashBuilder
 /// </summary>
-public partial class GitBashBuilder : IGitBashBuilder
+public partial class GitBashBuilder 
 {
     private static Type type = typeof(GitBashBuilder);
     public ITextBuilder sb = null;
@@ -285,78 +285,5 @@ public partial class GitBashBuilder : IGitBashBuilder
         return sb.ToString();
     }
 
-    public void Add(string v)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void AddNewRemote(string s)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Checkout(string arg)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Clean(string v)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Clone(string repoUri, string args)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Commit(bool addAllUntrackedFiles, string commitMessage)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Config(string v)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Fetch(string s = "")
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Init()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Merge(string v)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Pull()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Push(bool force)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Push(string arg)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Remote(string arg)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Status()
-    {
-        throw new NotImplementedException();
-    }
+   
 }
