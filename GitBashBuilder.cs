@@ -398,7 +398,7 @@ public partial class GitBashBuilder : IGitBashBuilder
     /// <summary>
     /// Not automatically append new line - due to conditionals adding arguments
     /// 
-    /// Musí být tato metoda statická? další taková tu není
+    /// Musï¿½ bï¿½t tato metoda statickï¿½? dalï¿½ï¿½ takovï¿½ tu nenï¿½
     /// </summary>
     /// <param name="sb"></param>
     /// <param name="remainCommand"></param>
