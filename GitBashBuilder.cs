@@ -1,5 +1,3 @@
-
-
 namespace
 #if SunamoDevCode
 SunamoDevCode
@@ -7,9 +5,6 @@ SunamoDevCode
 SunamoGitBashBuilder
 #endif
 ;
-
-
-
 /// <summary>
 /// GitBashBuilder
 /// </summary>
@@ -17,23 +12,18 @@ public partial class GitBashBuilder
 {
     private static Type type = typeof(GitBashBuilder);
     public ITextBuilder sb = null;
-
     //public GitBashBuilder()
     //{
     //    sb = new TextBuilder();
     //    sb.prependEveryNoWhite = AllStrings.space;
     //}
-
     public GitBashBuilder(ITextBuilder sb)
     {
         this.sb = sb;
         //this.sb.sb = sb.sb;
     }
-
     public bool GitForDebug = false;
-
     public List<string> Commands { get => SHGetLines.GetLines(ToString()); }
-
     /// <summary>
     /// A2 must be files prepared to cmd
     /// </summary>
@@ -43,7 +33,6 @@ public partial class GitBashBuilder
     {
         return CreateGitCommandForFiles("add", sb, linesFiles);
     }
-
     /// <summary>
     /// Support:
     /// {dir}/* for add all files
@@ -66,12 +55,10 @@ public partial class GitBashBuilder
         {
             return "";
         }
-
         string result = GitBashBuilder.CreateGitCommandForFiles(command, new StringBuilder(), filesToCommit);
         //ClipboardHelper.SetText(result);
         return result;
     }
-
     /// <summary>
     /// A2 - must be filled, because is stripped all extension then passed will be suffixed
     /// </summary>
@@ -81,7 +68,6 @@ public partial class GitBashBuilder
     public static string CheckoutWithExtension(string folder, string typedExt, List<string> files, string basePathIfA2SolutionsWontExistsOnFilesystem, ITextBuilder ci, ITypedLoggerBase typedLoggerBase)
     {
         ThrowEx.IsNull("typedExt", typedExt);
-
         GitBashBuilder bashBuilder = new GitBashBuilder(ci);
         bool anyError = false;
         var filesToCommit = GitBashBuilder.PrepareFilesToSimpleGitFormat(typedLoggerBase, folder, files, out anyError, typedExt, basePathIfA2SolutionsWontExistsOnFilesystem);
@@ -89,13 +75,10 @@ public partial class GitBashBuilder
         {
             //SunamoTemplateLogger.Instance.SomeErrorsOccuredSeeLog();
         }
-
         //string result = GitBashBuilder.CreateGitCommandForFiles("checkout", new StringBuilder(), filesToCommit);
         string result = GitBashBuilder.GenerateCommandForGit(typedLoggerBase, folder, files, out anyError, typedExt, "checkout", basePathIfA2SolutionsWontExistsOnFilesystem);
-
         return result;
     }
-
     /// <summary>
     /// A2 - path in which search for files by extension
     /// A5 - must be filled, because is stripped all extension then passed will be suffixed
@@ -113,7 +96,6 @@ public partial class GitBashBuilder
         anyError = false;
         // removing notes and description
         //TypedLoggerBase tlb = TypedConsoleLogger.Instance;
-
         string pathSearchForFiles = null;
         if (Directory.Exists(solution))
         {
@@ -123,7 +105,6 @@ public partial class GitBashBuilder
         {
             pathSearchForFiles = Path.Combine(basePathIfA2SolutionsWontExistsOnFilesystem, solution);
         }
-
         string pathRepository = pathSearchForFiles;
         if (solution == Consts.Cz)
         {
@@ -131,13 +112,9 @@ public partial class GitBashBuilder
             pathSearchForFiles += AllStrings.bs + solution;
         }
         //tlb.Information("Path" + ": " + pathSearchForFiles);
-
         FS.WithEndSlash(ref pathRepository);
-
         var files = Directory.GetFiles(pathSearchForFiles, "*.*", System.IO.SearchOption.AllDirectories/*, new GetFilesArgs { excludeFromLocationsCOntains = SunamoCollections.new List<string>(@"\.git\") }*/).ToList();
-
         files = files.Where(d => !d.Contains(@"\.git\")).ToList();
-
         CA.Replace(linesFiles, solution, string.Empty);
         CAChangeContent.ChangeContent1(null, linesFiles, SHParts.RemoveAfterFirst, AllStrings.swd);
         CA.Trim(linesFiles);
@@ -145,16 +122,12 @@ public partial class GitBashBuilder
         CAChangeContent.ChangeContent<bool>(null, linesFiles, FS.Slash, true);
         CAChangeContent.ChangeContent1(null, linesFiles, SHTrim.TrimStart, AllStrings.slash);
         var linesFilesOnlyFilename = FS.OnlyNamesNoDirectEdit(linesFiles);
-
         anyError = false;
         List<string> filesToCommit = new List<string>();
-
         // In key are filenames, in value full paths to files backslashed
         Dictionary<string, List<string>> dictPsychicallyExistsFiles = FS.GetDictionaryByFileNameWithExtension(files);
-
         CA.Replace(files, AllStrings.bs, AllStrings.slash);
         pathRepository = FS.Slash(pathRepository, false);
-
         // process full path files
         for (int i = 0; i < linesFiles.Count; i++)
         {
@@ -237,89 +210,64 @@ public partial class GitBashBuilder
             }
             #endregion
         }
-
         if (anyError)
         {
             //tlb.Error(xSomeErrorsOccured);
             return null;
         }
-
         return filesToCommit;
     }
-
     public static string xSomeErrorsOccured = "SomeErrorsOccured";
-
     public static string CreateGitCommandForFiles(string command, StringBuilder sb, List<string> linesFiles)
     {
         return null;
         //return GitStatic(sb, command + AllStrings.space + string.Join(AllChars.space, linesFiles));
     }
-
     public void Cd(string key)
     {
         sb.AppendLine("cd " + SH.WrapWith(key, AllStrings.qm));
     }
-
     public void Clear()
     {
         sb.Clear();
     }
-
     public void Append(string text)
     {
         sb.Append(text);
     }
-
     public void AppendLine(string text)
     {
         sb.AppendLine(text);
     }
-
     public void AppendLine()
     {
         sb.AppendLine();
     }
-
     public override string ToString()
     {
         return sb.ToString();
     }
-
    
 }
-
-
-
-
-
-
-
-
-
 /// <summary>
 /// To easy create interface
 /// </summary>
 public partial class GitBashBuilder : IGitBashBuilder
 {
-
-
     public void Pull()
     {
         Git("pull");
         AppendLine();
     }
-
     #region Git commands
     public void Clone(string repoUri, string args)
     {
         Git("clone " + repoUri + " " + args);
         AppendLine();
     }
-
     public void Commit(bool addAllUntrackedFiles, string commitMessage)
     {
         ThrowEx.IsNullOrWhitespace("commitMessage", commitMessage);
-
         Git("commit ");
         if (addAllUntrackedFiles)
         {
@@ -331,7 +279,6 @@ public partial class GitBashBuilder : IGitBashBuilder
         }
         AppendLine();
     }
-
     public void Push(bool force)
     {
         Git("push");
@@ -341,14 +288,12 @@ public partial class GitBashBuilder : IGitBashBuilder
         }
         AppendLine();
     }
-
     public void Push(string arg)
     {
         Git("push");
         AppendLine(arg);
         AppendLine();
     }
-
     /// <summary>
     /// myslim si ze chyba spise ne z v initu byla v clone, init se musi udelat i kdyz chci udelat git remote
     /// nikdy nepoustet na adresar ktery ma jiz adresar .git!! jinak se mi zapise s prazdnym obsahem a pri pristim pushi mam po vsem!!! soubory mi odstrani z disku a ne do zadneho kose!!!
@@ -358,21 +303,18 @@ public partial class GitBashBuilder : IGitBashBuilder
         Git("init");
         AppendLine();
     }
-
     public void Add(string v)
     {
         Git("add");
         Append(v);
         AppendLine();
     }
-
     public void Config(string v)
     {
         Git("config");
         Append(v);
         AppendLine();
     }
-
     /// <summary>
     /// never use, special with dfx argument
     /// d - Remove untracked directories in addition to untracked files.
@@ -388,13 +330,11 @@ public partial class GitBashBuilder : IGitBashBuilder
         Arg(v);
         AppendLine();
     }
-
     public static string GitStatic(StringBuilder sb, string remainCommand)
     {
         sb.Append("git " + remainCommand);
         return sb.ToString();
     }
-
     /// <summary>
     /// Not automatically append new line - due to conditionals adding arguments
     /// 
@@ -407,38 +347,31 @@ public partial class GitBashBuilder : IGitBashBuilder
         sb.Append((GitForDebug ? "GitForDebug " : "git ") + remainCommand);
     }
     #endregion
-
-
     private void Arg(string v)
     {
         Append(AllStrings.dash + v);
     }
-
     public void Remote(string arg)
     {
         Git("remote");
         Append(arg);
         AppendLine();
     }
-
     public void Status()
     {
         Git("status");
         AppendLine();
     }
-
     public void Fetch(string s = Consts.se)
     {
         Git("fetch " + s);
         AppendLine();
     }
-
     public void Merge(string v)
     {
         Git("merge " + v);
         AppendLine();
     }
-
     public void AddNewRemote(string s)
     {
         Remote("add origin " + s);
@@ -447,11 +380,9 @@ public partial class GitBashBuilder : IGitBashBuilder
         AppendLine("vsGitIgnoreGitHub");
         AppendLine("gaacipuu");
     }
-
     public void Checkout(string arg)
     {
         Git("checkout");
         AppendLine(arg);
     }
-
 }
