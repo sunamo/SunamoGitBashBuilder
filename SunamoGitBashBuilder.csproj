@@ -22,8 +22,8 @@
     <Compile Include="..\SunamoInterfaces\Interfaces\ITextBuilder.cs" Link="_linked\SunamoInterfaces\Interfaces\ITextBuilder.cs" />
     <Compile Include="..\SunamoInterfaces\Interfaces\ITypedLoggerBase.cs" Link="_linked\SunamoInterfaces\Interfaces\ITypedLoggerBase.cs" />
     <Compile Include="..\SunamoData\Data\StoreParsedApp.cs" Link="_linked\SunamoData\Data\StoreParsedApp.cs" />
-    <Compile Include="..\SunamoData\Data\FromToT.cs" Link="_linked\SunamoData\Data\FromToT.cs" />
-    <Compile Include="..\SunamoCollectionsValuesTableGrid\ValuesTableGrid.cs" Link="_linked\SunamoCollectionsValuesTableGrid\ValuesTableGrid.cs" />
+    <Compile Include="..\SunamoXlfKeys\XlfKeys.cs" Link="_linked\SunamoXlfKeys\XlfKeys.cs" />
+    <Compile Include="..\SunamoInterfaces\Interfaces\IParser.cs" Link="_linked\SunamoInterfaces\Interfaces\IParser.cs" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>$(DefineConstants);ASYNC;SunamoGitBashBuilder</DefineConstants>
