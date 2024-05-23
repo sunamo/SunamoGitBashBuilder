@@ -6,6 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-internal interface ITypedLoggerBase
+public interface ITypedLoggerBase
 {
 }

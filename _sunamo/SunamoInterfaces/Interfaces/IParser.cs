@@ -1,7 +1,7 @@
 namespace SunamoGitBashBuilder;
 
 
-internal interface IParser
+public interface IParser
 {
     void Parse(string co);
 }

@@ -1,30 +1,30 @@
 using System.Runtime.CompilerServices;
 namespace SunamoGitBashBuilder;
 
-internal class SH
+public class SH
 {
 
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static string WrapWith(string value, string h)
+    public static string WrapWith(string value, string h)
     {
         return h + value + h;
     }
 
-    internal static string WrapWithQm(string value)
+    public static string WrapWithQm(string value)
     {
         var h = "\"";
         return h + value + h;
     }
 
     #region FirstCharUpper
-    internal static string FirstCharUpper(ref string result)
+    public static string FirstCharUpper(ref string result)
     {
         result = FirstCharUpper(result);
         return result;
     }
 
-    internal static string FirstCharUpper(string nazevPP, bool only = false)
+    public static string FirstCharUpper(string nazevPP, bool only = false)
     {
         if (nazevPP != null)
         {

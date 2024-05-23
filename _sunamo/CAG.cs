@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SunamoGitBashBuilder;
-internal class CAG
+public class CAG
 {
-    internal static int MinElementsItemsInnerList<T>(List<List<T>> exists)
+    public static int MinElementsItemsInnerList<T>(List<List<T>> exists)
     {
         int min = int.MaxValue;
 
@@ -21,7 +21,7 @@ internal class CAG
 
         return min;
     }
-    internal static int MaxElementsItemsInnerList<T>(List<List<T>> exists)
+    public static int MaxElementsItemsInnerList<T>(List<List<T>> exists)
     {
         int max = 0;
 
