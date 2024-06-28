@@ -1,8 +1,8 @@
 namespace SunamoGitBashBuilder;
 
-public class DictionaryHelper
+internal class DictionaryHelper
 {
-    public static void AddOrCreateIfDontExists<Key, Value>(Dictionary<Key, List<Value>> sl, Key key, Value value)
+    internal static void AddOrCreateIfDontExists<Key, Value>(Dictionary<Key, List<Value>> sl, Key key, Value value)
     {
         if (sl.ContainsKey(key))
         {

@@ -4,10 +4,10 @@
 
 namespace SunamoGitBashBuilder;
 
-public class FS
+internal class FS
 {
     #region WithEndSlash
-    public static string WithEndSlash(ref string v)
+    internal static string WithEndSlash(ref string v)
     {
         if (v != string.Empty)
         {
@@ -18,12 +18,12 @@ public class FS
         return v;
     }
 
-    public static string WithEndSlash(string v)
+    internal static string WithEndSlash(string v)
     {
         return WithEndSlash(ref v);
     }
     #endregion
-    public static string AddExtensionIfDontHave(string file, string ext)
+    internal static string AddExtensionIfDontHave(string file, string ext)
     {
         // For *.* and git paths {dir}/*
         if (file[file.Length - 1] == AllChars.asterisk)
@@ -37,7 +37,7 @@ public class FS
 
         return file;
     }
-    public static List<string> OnlyNamesNoDirectEdit(List<string> files2)
+    internal static List<string> OnlyNamesNoDirectEdit(List<string> files2)
     {
         List<string> files = new List<string>(files2.Count);
         for (int i = 0; i < files2.Count; i++)
@@ -46,7 +46,7 @@ public class FS
         }
         return files;
     }
-    public static Dictionary<string, List<string>> GetDictionaryByFileNameWithExtension(List<string> files)
+    internal static Dictionary<string, List<string>> GetDictionaryByFileNameWithExtension(List<string> files)
     {
         Dictionary<string, List<string>> result = new Dictionary<string, List<string>>();
         foreach (var item in files)
@@ -58,7 +58,7 @@ public class FS
         return result;
     }
 
-    public static string Slash(string path, bool slash)
+    internal static string Slash(string path, bool slash)
     {
         string result = null;
         if (slash)

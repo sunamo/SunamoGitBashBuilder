@@ -1,7 +1,7 @@
 namespace SunamoGitBashBuilder;
 
 
-public interface ITextBuilder
+internal interface ITextBuilder
 {
     bool CanUndo { get; set; }
     List<string> list { get; set; }

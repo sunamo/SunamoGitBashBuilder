@@ -1,8 +1,8 @@
 namespace SunamoGitBashBuilder;
 
-public class SHTrim
+internal class SHTrim
 {
-    public static string TrimStart(string v, string s)
+    internal static string TrimStart(string v, string s)
     {
         while (v.StartsWith(s))
         {

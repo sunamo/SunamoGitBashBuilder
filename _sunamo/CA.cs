@@ -1,8 +1,8 @@
 namespace SunamoGitBashBuilder;
 
-public class CA
+internal class CA
 {
-    public static List<string> Trim(List<string> l)
+    internal static List<string> Trim(List<string> l)
     {
         for (var i = 0; i < l.Count; i++) l[i] = l[i].Trim();
 
@@ -19,7 +19,7 @@ public class CA
     /// <param name="files_in"></param>
     /// <param name="what"></param>
     /// <param name="forWhat"></param>
-    public static void Replace(List<string> files_in, string what, string forWhat)
+    internal static void Replace(List<string> files_in, string what, string forWhat)
     {
         for (int i = 0; i < files_in.Count; i++)
         {
