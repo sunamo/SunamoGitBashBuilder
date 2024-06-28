@@ -1,3 +1,5 @@
+
+namespace SunamoGitBashBuilder;
 using System.Diagnostics;
 using System.Text;
 

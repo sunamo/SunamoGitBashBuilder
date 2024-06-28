@@ -1,3 +1,5 @@
+
+namespace SunamoGitBashBuilder;
 public class TranslateAble
 {
     

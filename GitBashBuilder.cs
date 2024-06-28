@@ -1,3 +1,5 @@
+
+namespace SunamoGitBashBuilder;
 /// <summary>
 /// GitBashBuilder
 /// </summary>
