@@ -1,10 +1,3 @@
-namespace
-#if SunamoDevCode
-SunamoDevCode
-#else
-SunamoGitBashBuilder
-#endif
-;
 /// <summary>
 /// GitBashBuilder
 /// </summary>
